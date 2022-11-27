@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {  useEffect, useRef, useState } from 'react';
 import sample1Img from '../media/sample1.jpg' 
 import sample1Sng from '../media/sample1.mp3' 
 import sample2Img from '../media/sample2.jpg' 
 import sample2Sng from '../media/sample2.mp3' 
-import {  SkipBackwardFill, SkipForwardFill } from "react-bootstrap-icons";
+
+import Player from './subcomponents/Player';
 
 const songQueue = [
   {
@@ -28,40 +29,81 @@ const PlayBtn = `<svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" cl
 export default function Home() {
 
   const [currentSong, setCurrentSong] = useState(songQueue[0])
+  const [constrains,setConstrains] = useState({'firstSong':null,'lastSong':null,'changeVar':0,'direction':null}) 
   const audioRef = useRef(null)
-  const HandlePlay = (e) => {
+  useEffect(() => {
+    console.log(constrains)
+    if (constrains.changeVar){
+      setTimeout(() => {
+      const playBtnElement = document.querySelector('#play-btn')
+      if( constrains.firstSong && constrains.direction === 'B'){
+        audioRef.current.currentTime = 0
+        audioRef.current.play()
+        playBtnElement.innerHTML = PauseBtn
+      }
+      else if (constrains.lastSong && constrains.direction === 'F'){
+        audioRef.current.currentTime = audioRef.current.duration
+        audioRef.current.pause()
+        playBtnElement.innerHTML = PlayBtn
+      }
+      else{
+        audioRef.current.currentTime = 0
+        audioRef.current.play()
+        playBtnElement.innerHTML = PauseBtn
+
+      }
+
+    } 
+    ,100)
+  }
+  },[constrains])
+  const handlePlay = (e) => {
     const AudioStatus = audioRef.current.paused
+    if (audioRef.current.duraion !== audioRef.current.currentTime){
+      audioRef.current.currentTime =0;
+    }
     if (AudioStatus){
       e.currentTarget.innerHTML = PauseBtn
       audioRef.current.play();
     }
     else{
       e.currentTarget.innerHTML = PlayBtn
-      console.log(audioRef)
       audioRef.current.pause();
     }  
+
   }
-  const HandleChangeSong = (val) =>{
-    
-    
+  const handleChangeSong = (val) =>{
     setCurrentSong((prevSong) =>{
       const songCount = songQueue.length
       const indexSong = songQueue.findIndex((song) => song === prevSong)
-      const newIndex = indexSong+val
-      if ( (newIndex< songCount-1) && (newIndex>0)) {
-        return songQueue[newIndex]
+      
+      let newIndex = indexSong+val
+      console.log('a',newIndex,songCount)
+      const direction = val >0 ? 'F' : 'B'
+      if (newIndex>=0 && newIndex <=songCount-1){
+        setConstrains((prevConstrains) => {
+          return {...prevConstrains,'lastSong':false,'firstSong':false,'direction':direction}
+        })
       }
-      else if(newIndex>songCount-1){
-        return songQueue[0]
+      if (newIndex<0){
+        setConstrains((prevConstrains) => {
+          const newVar = prevConstrains.changeVar+1
+          return {...prevConstrains,'firstSong':true,'changeVar':newVar,'direction':direction}
+        })
+        newIndex = 0
       }
-      else{
-        return songQueue[songCount-1]
+      if(newIndex>songCount-1){
+        console.log('pass',newIndex,songCount)
+        newIndex =songCount-1
+        setConstrains((prevConstrains) => {
+          const newVar = prevConstrains.changeVar+1
+          return {...prevConstrains,'lastSong':true,'changeVar':newVar,'direction':direction}
+        })
       }
+
+      return songQueue[newIndex]
     })
-    setTimeout(() => {
-      audioRef.current.play()
-      document.querySelector('#play-btn').innerHTML = PauseBtn
-    },500)
+
     }
     const handleUpdateTimeLine = () =>{
       const timeline = document.querySelector('.timeline');
@@ -82,36 +124,15 @@ export default function Home() {
           src={currentSong.songFile}
           ref={audioRef}
           onChange={(e) => e.target.play()} 
-          onEnded={() =>HandleChangeSong(1)} 
           onTimeUpdate={handleUpdateTimeLine}
         >
         </audio>
+        <Player 
+        handleChangeSong={handleChangeSong} 
+        handleUpdateDuration={handleUpdateDuration} 
+        handlePlay ={handlePlay}
+        />
       </div>     
-      <div className="controls-all">
-        <input type="range" class="timeline" onChange={handleUpdateDuration} max="100" value="0"></input>
-        <div className='controls'>
-          <div className='track-info'>
-            Test
-          </div>
-          <div className='playback-controls'>
-            <button onClick={() =>HandleChangeSong(-1)} className='previous-song-btn'>
-              <SkipBackwardFill/>
-            </button>
-            <button id='play-btn' onClick={(e) => HandlePlay(e)} className="player-button">
-              <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" className="bi bi-play-circle-fill" viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
-              </svg>             
-            </button>
-            <button onClick={() =>HandleChangeSong(1)} className='previous-song-btn'>
-              <SkipForwardFill/>
-            </button>
-          </div>
-          <div className='volumne-controls'>
-            Volume controls
-          </div>
-        </div>
-      </div>
-
     </>
   )
 }
