@@ -41,7 +41,7 @@
         rgba(172, 173, 255, 0.5));
     background-repeat: no-repeat;
 }
-.timeline::-webkit-slider-thumb {
+.timeline::-webkit-slider-thumb { 
     -webkit-appearance: none;
     width: 1em;
     height: 1em;
