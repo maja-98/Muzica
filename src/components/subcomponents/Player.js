@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {  SkipBackwardFill, SkipForwardFill,SpeakerFill } from "react-bootstrap-icons";
-export default function Player({handleChangeSong,handlePlay,handleUpdateDuration}) {
+export default function Player({handleChangeSong,handlePlay,handleUpdateDuration,song,duration}) {
   const [volume,setVolume] = useState(50)
   const handleAudioBarToggle = () => {
     const volBar = document.querySelector('#volume-control')
@@ -14,14 +14,28 @@ export default function Player({handleChangeSong,handlePlay,handleUpdateDuration
     audio.volume = volBar.value/100
     setVolume(volBar.value)
   }
-
+  const secondsToMinute = (seconds) =>{
+    if (seconds){
+    let minutes = Math.floor(seconds/60)
+    let addSeconds = seconds % 60
+    minutes = minutes < 10 ? '0'+minutes : minutes
+    addSeconds = addSeconds < 10 ? '0'+Math.round(addSeconds,2) : Math.round(addSeconds,2)
+    return minutes+':'+addSeconds}
+    else{
+      return '00:00'
+    }
+  }
   return (
     <div>
       <div className="controls-all">
         <input type="range" className="timeline" onChange={handleUpdateDuration} max="100" value="0"></input>
         <div className='controls'>
           <div className='track-info'>
-            Track Info
+            <div className='track-main-details'>
+              <h2 className='song-title'><span>&#119136;&#119136;</span>{song.title}</h2>
+              <h3 className='artist-title'>{song.artist}</h3>
+            </div>
+            <h2 className='duration'>{secondsToMinute(duration.currentDuration)}/{secondsToMinute(duration.totalDuration)}</h2>
           </div>
           <div className='playback-controls'>
             <button onClick={() =>handleChangeSong(-1)} className='previous-song-btn'>

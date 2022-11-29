@@ -8,22 +8,25 @@ import sample3Sng from './media/sample3.mp3'
 
 const songQueue = [
   {
-    title:'sample1',
+    title:'sample1 asdasd',
     songFile: sample1Sng,
     thumbnail: sample1Img,
+    artist:'Justin Bieber',
     category: 'rock'
   },
   {
     title:'sample2',
     songFile: sample2Sng,
     thumbnail:sample2Img,
-    category: 'pop'
+    category: 'pop',
+    artist:'Akon',
   },
   {
     title:'sample3',
     songFile: sample3Sng,
     thumbnail:sample3Img,
-    category: 'rap'
+    category: 'rap',
+    artist:'Billie',
   }
 ]
 export default songQueue;

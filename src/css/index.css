@@ -1,4 +1,5 @@
-@import './home.css';
+@import './playermain.css';
+@import './player.css';
 html{
   margin: 0px;
   padding: 0px;
@@ -11,9 +12,13 @@ body{
 h1,h2,h3,h4,h5,h6{
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
+    margin: 0;
+    padding: 0;
+
 }
 p,span{
   font-family: 'Courier New', Courier, monospace;
+  margin: 0;
 }
 button{
   background: transparent;
