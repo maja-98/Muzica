@@ -8,6 +8,7 @@ import sample3Sng from './media/sample3.mp3'
 
 const songQueue = [
   {
+    id:1,
     title:'sample1 asdasd',
     songFile: sample1Sng,
     thumbnail: sample1Img,
@@ -15,6 +16,7 @@ const songQueue = [
     category: 'rock'
   },
   {
+    id:2,
     title:'sample2',
     songFile: sample2Sng,
     thumbnail:sample2Img,
@@ -22,6 +24,7 @@ const songQueue = [
     artist:'Akon',
   },
   {
+    id:3,
     title:'sample3',
     songFile: sample3Sng,
     thumbnail:sample3Img,

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {  SkipBackwardFill, SkipForwardFill,SpeakerFill } from "react-bootstrap-icons";
-export default function Player({handleChangeSong,handlePlay,handleUpdateDuration,song,duration}) {
+export default function Player({handleChangeSong,handlePlay,handleUpdateDuration,duration}) {
   const [volume,setVolume] = useState(50)
   const handleAudioBarToggle = () => {
     const volBar = document.querySelector('#volume-control')
@@ -31,10 +31,6 @@ export default function Player({handleChangeSong,handlePlay,handleUpdateDuration
         <input type="range" className="timeline" onChange={handleUpdateDuration} max="100" value="0"></input>
         <div className='controls'>
           <div className='track-info'>
-            <div className='track-main-details'>
-              <h2 className='song-title'><span>&#119136;&#119136;</span>{song.title}</h2>
-              <h3 className='artist-title'>{song.artist}</h3>
-            </div>
             <h2 className='duration'>{secondsToMinute(duration.currentDuration)}/{secondsToMinute(duration.totalDuration)}</h2>
           </div>
           <div className='playback-controls'>

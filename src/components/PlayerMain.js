@@ -1,7 +1,9 @@
 import React, {  useEffect, useRef, useState } from 'react';
-
-import songQueue from '../Data';
+import AllSongsList from '../AllSongsList'
+import songs from '../Data';
+import AllSongs from './subcomponents/AllSongs';
 import Player from './subcomponents/Player';
+import SongQueue from './subcomponents/SongQueue';
 
 const PauseBtn = `<svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" className="bi bi-pause-circle-fill" viewBox="0 0 16 16">
   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5zm3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5z"/>
@@ -10,6 +12,7 @@ const PlayBtn = `<svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" cl
   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
 </svg>`;
 export default function PlayerMain() {
+  const [songQueue , setSongQueue] = useState(songs)
   const [currentSong, setCurrentSong] = useState(songQueue[0])
   const [constrains,setConstrains] = useState({firstSong:null,'lastSong':null,'changeVar':0,'direction':null,end:false}) 
   const [duration,setDuration] = useState({currentDuration:0,totalDuration:0})
@@ -103,6 +106,18 @@ export default function PlayerMain() {
     <>
       <div className='thumbnail' style={{backgroundImage:`url(${currentSong.thumbnail})`}}>
         <h1 className='logo-title'>MUZICA</h1>
+        <div className='track-main-details'>
+          <h2 className='song-title'><span>&#119136;</span>{currentSong.title}</h2>
+          <h3 className='artist-title'>{currentSong.artist}</h3>
+        </div>
+        <div className='main-content'>
+          <SongQueue
+          songs = {songQueue}
+          />
+          <AllSongs
+          songs = {AllSongsList}
+          />
+        </div>
         <audio 
           src={currentSong.songFile}
           ref={audioRef}
@@ -120,7 +135,6 @@ export default function PlayerMain() {
         handleChangeSong={handleChangeSong} 
         handleUpdateDuration={handleUpdateDuration} 
         handlePlay ={handlePlay}
-        song = {currentSong}
         duration ={duration}
         />
       </div>     

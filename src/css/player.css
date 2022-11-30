@@ -139,34 +139,10 @@ svg:hover {
     display: flex ;
     margin: 0;
 }
-.track-main-details{
-    width: 180px;;
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
-    justify-content: center;
-    color: rgba(230, 230, 255)
 
-}
 .duration{
     font-size: 15px;
     margin: 10px;;
     color: rgba(220, 230, 255,0.9)
 }
-.song-title{
-    margin-right: 5px;
-    font-size: 18px;
-    margin-bottom: 5px;;
-    text-align: center;
-}
-.song-title>span{
-    margin-right: 4px;
-}
-.artist-title{
-    font-size: 14px;;
-    text-align: center;
-}
-.artist-title:hover{
-    transform: scale(1.1);
-    cursor: pointer;
-}
+

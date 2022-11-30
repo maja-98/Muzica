@@ -1,5 +1,6 @@
 @import './playermain.css';
 @import './player.css';
+@import './song-queue.css';
 html{
   margin: 0px;
   padding: 0px;
