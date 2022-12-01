@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {  PlayFill , PlusCircle , Heart, HeartFill } from "react-bootstrap-icons";
-export default function AllSongs({songs}) {
+export default function AllSongs({songs,handleAddQueue}) {
   return (
     <div className='song-queue' >
       <h2>Available Songs</h2>
@@ -19,7 +19,7 @@ export default function AllSongs({songs}) {
             </div>
             <div className='song-attributes'>
               <button><Heart/></button>
-              <button><PlusCircle/></button>{/* onclick -> add to exisitng queue */}
+              <button onClick={() => handleAddQueue(song.id)}><PlusCircle/></button>{/* onclick -> add to exisitng queue */}
             </div>
           </div>
           )

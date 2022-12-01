@@ -3,7 +3,8 @@ import AllSongsList from '../AllSongsList'
 import songs from '../Data';
 import AllSongs from './subcomponents/AllSongs';
 import Player from './subcomponents/Player';
-import SongQueue from './subcomponents/SongQueue';
+import SongQueueComp from './subcomponents/SongQueueComp';
+import defaultImage from './../media/default.png'
 
 const PauseBtn = `<svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" className="bi bi-pause-circle-fill" viewBox="0 0 16 16">
   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5zm3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5z"/>
@@ -17,9 +18,21 @@ export default function PlayerMain() {
   const [constrains,setConstrains] = useState({firstSong:null,'lastSong':null,'changeVar':0,'direction':null,end:false}) 
   const [duration,setDuration] = useState({currentDuration:0,totalDuration:0})
   const audioRef = useRef(null)
+  const defaultSong =   {
+    id:1,
+    title:'',
+    songFile: null,
+    thumbnail: defaultImage,
+    artist:'',
+    category: ''
+  }
   useEffect(() => {
-    // console.log(constrains)
-    if (constrains.changeVar){
+    console.log(constrains)
+    if (constrains.direction === 'N'){
+      audioRef.current.currentDuration = 0
+    }
+    if (constrains.changeVar && !constrains.end){
+      
       setTimeout(() => {
       const playBtnElement = document.querySelector('#play-btn')
       if( constrains.firstSong && constrains.direction === 'B'){
@@ -41,28 +54,7 @@ export default function PlayerMain() {
     ,100)
   }
   },[constrains])
-  const handlePlay = (e) => {
-    const AudioStatus = audioRef.current.paused
-    if (constrains.lastSong=== true && AudioStatus ){
-      audioRef.current.currentTime = 0
-      setConstrains((prevConstrains) => ({...prevConstrains,changeVar:0,end:false,lastSong:false}))
-    }
-    if (AudioStatus){
-      e.currentTarget.innerHTML = PauseBtn
-      audioRef.current.play();
-    }
-    else{
-      e.currentTarget.innerHTML = PlayBtn
-      audioRef.current.pause();
-    }  
-    
-  }
-  const handleChangeSong = (val) =>{
-    setCurrentSong((prevSong) =>{
-      const songCount = songQueue.length
-      const indexSong = songQueue.findIndex((song) => song === prevSong)    
-      let newIndex = indexSong+val
-      const direction = val >0 ? 'F' : 'B'
+  function constrainManager(newIndex,direction,songCount){
       if (newIndex>=0 && newIndex <=songCount-1){
         setConstrains((prevConstrains) => {
           const newVar = prevConstrains.changeVar+1
@@ -83,11 +75,35 @@ export default function PlayerMain() {
           return {...prevConstrains,'lastSong':true,'changeVar':newVar,'direction':direction,'end':false}
         })
       }
+      return newIndex
+  }
+  const handlePlay = (e) => {
+    const AudioStatus = audioRef.current.paused
+    if (constrains.lastSong=== true && AudioStatus ){
+      audioRef.current.currentTime = 0
+      setConstrains((prevConstrains) => ({...prevConstrains,changeVar:0,end:false,lastSong:false}))
+    }
+    if (AudioStatus){
+      e.currentTarget.innerHTML = PauseBtn
+      audioRef.current.play();
+    }
+    else{
+      e.currentTarget.innerHTML = PlayBtn
+      audioRef.current.pause();
+    }  
+    
+  }
+  const handleChangeSong = (val) =>{
+    setCurrentSong((prevSong) =>{
+      const songCount = songQueue.length
+      const indexSong = songQueue.findIndex((song) => song === prevSong)   
+      let newIndex = indexSong+val 
+      const direction = val >0 ? 'F' : 'B'
+      newIndex = constrainManager(newIndex,direction,songCount)
       return songQueue[newIndex]
     }
     )}
-    const handleUpdateTimeLine = () =>{
-      
+  const handleUpdateTimeLine = () =>{
       const timeline = document.querySelector('.timeline');
       const currentDuration = audioRef.current.currentTime
       const totalDuration = audioRef.current.duration
@@ -97,11 +113,64 @@ export default function PlayerMain() {
       setDuration({currentDuration,totalDuration})
     }
     const handleUpdateDuration = () =>{
-      
       const timeline = document.querySelector('.timeline');
       const time = (timeline.value * audioRef.current.duration) / 100;
       audioRef.current.currentTime = time;
     }
+    const handleAddQueue = (id) =>{
+      setSongQueue((prevQueue) => {
+        let NewQueue = [...prevQueue]
+        const NewID = prevQueue.reduce((a,b) => Math.max(a,b.id),0) + 1
+        const song = AllSongsList.find((song) => song.id === id)
+        const NewSong = {
+          ...song,
+          'id':NewID,
+        }
+        NewQueue.push(NewSong)
+        return (NewQueue)
+      })
+      if (constrains.end){
+      setCurrentSong(AllSongsList.find((song) => song.id === id))
+      setConstrains({firstSong:null,'lastSong':null,'changeVar':0,'direction':'N',end:false})
+      
+      }
+    }
+    const handleRemoveQueue = (id) =>{
+      const songCount = songQueue.length
+      const removeSong = songQueue.filter((song)=>song.id===id)[0]
+      const indexSong = songQueue.findIndex((song) => song === removeSong) 
+      console.log(songCount,currentSong.id , removeSong.id,songCount===1)
+      if (songCount===1){
+        setCurrentSong(defaultSong)
+        setConstrains((prevConstrains) => ({...prevConstrains,'end':true,'direction':null}))
+      }
+      else if (currentSong.id=== removeSong.id){
+        if (songCount === indexSong+1){
+          handleChangeSong(-1)
+        }
+        else{
+          handleChangeSong(1)
+        }
+      }
+      setSongQueue((prevQueue) => {
+        return prevQueue.filter((song) => song.id !== removeSong.id)
+      })
+    }
+
+
+    const handlePlayFromQueue = (id) =>{
+      setCurrentSong((prevSong) => {
+           return songQueue.find((song) => song.id === id)
+        })
+      setConstrains((prevConstrains) => {
+        const newVar = prevConstrains.changeVar+1
+        return {...prevConstrains,'lastSong':false,'firstSong':false,'changeVar':newVar,'direction':null,'end':false}
+      })
+       
+    }
+
+
+
   return (
     <>
       <div className='thumbnail' style={{backgroundImage:`url(${currentSong.thumbnail})`}}>
@@ -111,17 +180,19 @@ export default function PlayerMain() {
           <h3 className='artist-title'>{currentSong.artist}</h3>
         </div>
         <div className='main-content'>
-          <SongQueue
+          <SongQueueComp
           songs = {songQueue}
+          handleRemoveQueue = {handleRemoveQueue}
+          handlePlayFromQueue = {handlePlayFromQueue}
           />
           <AllSongs
           songs = {AllSongsList}
+          handleAddQueue = {handleAddQueue}
           />
         </div>
-        <audio 
+        {!constrains.end && <audio 
           src={currentSong.songFile}
           ref={audioRef}
-          onChange={(e) => e.target.play()} 
           onTimeUpdate={handleUpdateTimeLine}
           onEnded={() => {
             document.querySelector('#play-btn').innerHTML = PlayBtn
@@ -130,13 +201,14 @@ export default function PlayerMain() {
             })
           }}
         >
-        </audio>
-        <Player 
+        </audio>}
+        {!constrains.end && <Player 
         handleChangeSong={handleChangeSong} 
         handleUpdateDuration={handleUpdateDuration} 
         handlePlay ={handlePlay}
         duration ={duration}
-        />
+        song ={currentSong}
+        />}
       </div>     
     </>
   )
