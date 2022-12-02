@@ -1,21 +1,26 @@
 .song-queue{
     position: relative;
-    
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.song-queue-item{
+.song-queue-item,.song-queue-item-all-songs{
     display: grid;
     padding: 5px;
     border-radius: 10px;
     grid-template-columns: 1fr 2fr 1fr;
     
+    
+}
+.song-queue-item{
+    animation: left-in 1s;
+    animation-iteration-count: 1
 }
 .songs-list-container{
     overflow-y:scroll;
     max-height: 350px;
     padding: 0;
+    
 }
 
 .song-details{
@@ -46,7 +51,7 @@
 .song-queue-item{
     width: 100%;
 }
-.song-queue-item:hover{
+.song-queue-item:hover,.song-queue-item-all-songs:hover{
     background-color: rgba(240, 248, 255, 0.093);
     cursor: pointer;
 }
@@ -83,3 +88,46 @@
     width: 100%;
     justify-content: flex-end;
 }
+.no-song-queue{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: aliceblue;
+    height: 100px;
+    padding: 10px;
+    margin: 20px;
+}
+.no-song-queue>p{
+    max-width: 200px;
+    margin: 20px;
+    text-align: center;
+}
+
+#active-song{
+    background-color: rgba(240, 248, 255, 0.093);
+}
+.emoji > .happy{
+    display: none;
+}
+.emoji:hover > .happy{
+    display: block;
+}
+.emoji:hover > .sad{
+    display: none;
+}
+/* .emoji > .sad,.emoji:hover>.happy{
+    display: block;
+}
+.emoji:{
+    display: ;
+} */
+@keyframes left-in {
+    0% {
+        transform: translateX(30px);
+    }    
+    100%{
+        transform: translateX(0px);
+    }
+}
+

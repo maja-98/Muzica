@@ -1,7 +1,9 @@
+
 .controls-all {
     position: fixed;
     width: 100%;
     bottom: 0%;
+    animation: bottom-in 1s;
 }
 
 .controls {
@@ -146,3 +148,12 @@ svg:hover {
     color: rgba(220, 230, 255,0.9)
 }
 
+@keyframes bottom-in {
+    0%{
+        transform: translateY(100px);
+    }
+    100%{
+        transform: translatY(0px);
+    }
+    
+}

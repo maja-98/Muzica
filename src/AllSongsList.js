@@ -12,7 +12,7 @@ import sample4Sng from './media/sample4.mp3'
 const AllSongs = [
   {
     id:1,
-    title:'sample1 asdasd',
+    title:'Hello World',
     songFile: sample1Sng,
     thumbnail: sample1Img,
     artist:'Justin Bieber',
@@ -20,7 +20,7 @@ const AllSongs = [
   },
   {
     id:2,
-    title:'sample2',
+    title:'This song',
     songFile: sample2Sng,
     thumbnail:sample2Img,
     category: 'pop',
@@ -28,7 +28,7 @@ const AllSongs = [
   },
   {
     id:3,
-    title:'sample3',
+    title:'sample',
     songFile: sample3Sng,
     thumbnail:sample3Img,
     category: 'rap',
@@ -36,7 +36,7 @@ const AllSongs = [
   },
   {
     id:4,
-    title:'additional',
+    title:'Addon song',
     songFile: sample4Sng,
     thumbnail:sample4Img,
     category: 'rap',

@@ -26,7 +26,7 @@ export default function Player({handleChangeSong,handlePlay,handleUpdateDuration
     }
   }
   return (
-    <div>
+    <div className='player-container'>
       <div className="controls-all">
         <input type="range" className="timeline" onChange={handleUpdateDuration} max="100" value="0"></input>
         <div className='controls'>

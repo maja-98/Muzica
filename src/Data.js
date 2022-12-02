@@ -9,7 +9,7 @@ import sample3Sng from './media/sample3.mp3'
 const songQueue = [
   {
     id:1,
-    title:'sample1 asdasd',
+    title:'Hello World',
     songFile: sample1Sng,
     thumbnail: sample1Img,
     artist:'Justin Bieber',
@@ -17,7 +17,7 @@ const songQueue = [
   },
   {
     id:2,
-    title:'sample2',
+    title:'This song',
     songFile: sample2Sng,
     thumbnail:sample2Img,
     category: 'pop',
@@ -25,7 +25,7 @@ const songQueue = [
   },
   {
     id:3,
-    title:'sample3',
+    title:'Sample',
     songFile: sample3Sng,
     thumbnail:sample3Img,
     category: 'rap',

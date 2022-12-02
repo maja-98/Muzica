@@ -6,52 +6,35 @@
     background-blend-mode: color    ;
     background-color: rgba(0,0,0,0.4);
     --player-button-width: 3em;
-    
-}
-.logo-title{
-    color: rgba(255, 255, 255, 0.877);
-    margin-left: 10px;
-}
-
-.track-main-details {
-    position: fixed;
-    width: 100%; 
-    top: 0%;
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
-    justify-content: center;
-    
 }
 .song-title {
     margin-right: 5px;
     font-size: 25px;
     margin-bottom: 5px;;
     text-align: center;
-    color: rgb(215, 215, 234,0.9)
+    color: rgba(215, 215, 234,0.9)
 }
-
 .song-title>span {
     margin-right: 4px;
 }
-
 .artist-title {
+    position: relative;
+    width: fit-content;
     font-size: 14px;;
     text-align: center;
     color: rgba(223, 223, 255, 0.753)
 }
-
 .artist-title:hover {
     transform: scale(1.1);
     cursor: pointer;
 }
 .main-content{
     position: relative;
-    top: 10%;
+    top: 15%;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    width: 95%;
 }
-
 /* audio::-webkit-media-controls-panel {
     background: linear-gradient(to right,rgb(126, 186, 255),rgb(65, 66, 140));
  }

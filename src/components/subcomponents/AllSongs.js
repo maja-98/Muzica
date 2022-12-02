@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react'
 import {  PlayFill , PlusCircle , Heart, HeartFill } from "react-bootstrap-icons";
-export default function AllSongs({songs,handleAddQueue}) {
+export default function AllSongs({songs,handleAddQueue,handlePlayFromAllSongs}) {
   return (
     <div className='song-queue' >
       <h2>Available Songs</h2>
       <div className='songs-list-container'>
         {songs.map((song) => {
           return (
-          <div className='song-queue-item' key={song.id}>
-            <div className='song-image-container'>
+          <div className='song-queue-item-all-songs' key={song.id} >
+            <div className='song-image-container' onClick={() => handlePlayFromAllSongs(song.id)}>
               <img className='song-image' src={song.thumbnail} alt='' ></img>
               <span className='song-queue-play'><PlayFill/></span> {/* onclick -> clear queue and start new queue */}
               
             </div>
-            <div className='song-details'>
+            <div className='song-details' onClick={() => handlePlayFromAllSongs(song.id)}>
               <h5>{song.title}</h5>
               <h6>{song.artist}</h6>
             </div>
