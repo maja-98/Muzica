@@ -23,7 +23,8 @@ const songs =[]
 const songsList = songs
 const endValue = songs.length>0 ? false : true
 const currentSongTemp = endValue===false ? songsList[0] : defaultSong
-export default function PlayerMain() {
+export default function PlayerMain({overlay}) {
+  console.log(overlay)
   const [songQueue , setSongQueue] = useState(songsList)
   const [currentSong, setCurrentSong] = useState(currentSongTemp)
   const [constrains,setConstrains] = useState({firstSong:null,'lastSong':null,'changeVar':0,'direction':null,end:endValue}) 
@@ -31,7 +32,6 @@ export default function PlayerMain() {
   const audioRef = useRef(null)
   
   useEffect(() => {
-    console.log(constrains)
     if (constrains.direction === 'N'){
       audioRef.current.currentDuration = 0
     }
@@ -157,13 +157,11 @@ export default function PlayerMain() {
     }
     
     else if (currentSong.id=== removeSong.id){
-      console.log("passed")
       if (songCount === indexSong+1){
       
         handleChangeSong(-1)
       }
       else{
-        console.log('next')
         handleChangeSong(1)
       }
     }
@@ -220,7 +218,7 @@ export default function PlayerMain() {
 
   return (
     <>
-      <div className='thumbnail' style={{backgroundImage:`url(${currentSong.thumbnail})`}}>
+      <div className='thumbnail' style={{backgroundImage:`url(${currentSong.thumbnail})`,opacity: overlay===true?0.1:1}}>
         <NavBar constrains={constrains} currentSong={currentSong}/>
         <div className='main-content'>
           <SongQueueComp

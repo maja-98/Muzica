@@ -1,10 +1,25 @@
-import React from 'react'
+import React, {useState } from 'react'
 import PlayerMain from './PlayerMain'
 
 export default function Home() {
+  const [overlay,setOverlay] = useState(true)
+  const handleOverlay = () =>{
+    setOverlay(false)
+  }
   return (
     <div>
-      <PlayerMain/>
+      {overlay &&
+      <div className='overlay'>
+        <div className='overlay-message-box'>
+          <p className='overlay-message'>This site is not yet compltely developed. For Better User experience use PC as of Now app is incompatible on Mobile devices.
+          Also Many of the functionalities yet to build.Will deploy more features soon. Happy Listening!!!</p>
+          <div className='overlay-button-container'>
+            <button onClick={handleOverlay}>Start Listening</button>
+            <h1 className='hidden-overlay-message'>MUZICA</h1>
+          </div>
+        </div>
+      </div>}
+      <PlayerMain overlay={overlay}/>
     </div>
   )
 }

@@ -1,0 +1,65 @@
+.overlay{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:linear-gradient(to right,rgba(88, 91, 249, 0.877),rgba(51, 51, 213, 0.816),rgb(100, 165, 255));
+    z-index: 2;
+}
+.overlay-message-box{
+    width: 50%;
+    height: 20%;
+    border-radius: 10%;
+
+}
+.overlay-message{
+    background-color: rgb(85, 85, 228);
+    color: aliceblue;
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+    font-family:'Courier New', Courier, monospace
+}
+.overlay-button-container{
+    display: flex;
+    justify-content: center;
+}
+.hidden-overlay-message{
+    position: fixed;
+    opacity: 0;
+    bottom: 10%;;
+    font-size: 100px;
+    color: aliceblue;
+    transition: opacity 2s;
+    
+}
+.overlay-button-container > button{
+    color: rgba(53, 53, 236, 0.866);
+    background-color: rgba(255, 255, 255, 0.675);
+    width: fit-content;
+    padding: 5px;;
+    border-radius: 5px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+.overlay-button-container:hover>button{
+    opacity: 1;
+    background-color:white
+}
+.overlay-button-container:hover > .hidden-overlay-message {
+    opacity: 1;
+}
+@media screen and (max-width:768px){
+    .overlay-message-box {
+            width: 90%;
+            
+        }
+    .overlay-message{
+        margin-bottom: 20px;
+    }
+        .hidden-overlay-message {
+            font-size: 50px;
+        }
+}
