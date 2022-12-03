@@ -15,7 +15,7 @@
 
 }
 .overlay-message{
-    background-color: rgb(54, 54, 158);
+    background-color: rgba(54, 54, 158, 0.756);
     color: aliceblue;
     padding: 10px;
     width: 100%;
@@ -53,8 +53,7 @@
 }
 @media screen and (max-width:768px){
     .overlay-message-box {
-            width: 90%;
-            
+            width: 80%;
         }
     .overlay-message{
         margin-bottom: 20px;
