@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import {  PlayFill , PlusCircle , Heart, HeartFill } from "react-bootstrap-icons";
+import React  from 'react'
+import {  PlayFill , PlusCircle , Heart} from "react-bootstrap-icons";
 export default function AllSongs({songs,handleAddQueue,handlePlayFromAllSongs}) {
   return (
     <div className='song-queue' >
