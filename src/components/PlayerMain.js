@@ -1,10 +1,8 @@
 import React, {  useEffect, useRef, useState } from 'react';
 import AllSongsList from '../AllSongsList'
-import songs from '../Data';
 import AllSongs from './subcomponents/AllSongs';
 import Player from './subcomponents/Player';
 import SongQueueComp from './subcomponents/SongQueueComp';
-import defaultImage from './../media/default.png'
 import NavBar from './subcomponents/NavBar';
 
 const PauseBtn = `<svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" className="bi bi-pause-circle-fill" viewBox="0 0 16 16">
@@ -17,10 +15,11 @@ const defaultSong =   {
   id:null,
   title:'',
   songFile: null,
-  thumbnail: defaultImage,
+  thumbnail: 'https://muzica-22.s3.ap-south-1.amazonaws.com/Thumbnails/default.jpg',
   artist:'',
   category: ''
 }
+const songs =[]
 const songsList = songs
 const endValue = songs.length>0 ? false : true
 const currentSongTemp = endValue===false ? songsList[0] : defaultSong
@@ -242,10 +241,8 @@ export default function PlayerMain() {
           ref={audioRef}
           onTimeUpdate={handleUpdateTimeLine}
           onEnded={() => {
-            document.querySelector('#play-btn').innerHTML = PlayBtn
-            setConstrains((prevConstrains) =>{
-              return {...prevConstrains,end:true}
-            })
+            
+            handleChangeSong(1)
           }}
         >
         </audio>}
