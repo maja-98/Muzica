@@ -5,6 +5,8 @@ import User from './components/User'
 import SignUp from './components/SignUp'
 import Login from './components/Login'
 import Error from './components/Error'
+import Favourites from './components/subcomponents/Favourites'
+import AvailbleSongsList from './components/subcomponents/AvailbleSongsList'
 function App() {
     const router = createBrowserRouter([
         {
@@ -12,12 +14,20 @@ function App() {
             element: <Home/>
         },
         {
-            path:'/about',
+            path:'/about/',
             element: <About/>
         },
         {
             path:'/user/',
             element:<User/>
+        },   
+        {
+            path:'/all-songs/',
+            element:<AvailbleSongsList/>
+        },   
+        {
+            path:'/fav-songs/',
+            element:<Favourites/>
         },    
         {
             path:'/signup/',

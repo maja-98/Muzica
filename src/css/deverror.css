@@ -1,0 +1,35 @@
+.home-link-container{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(6, 6, 96, 0.816), rgba(76, 3, 165, 0.877), rgb(100, 165, 255));
+}
+.home-link {
+    text-align: center;
+    font-size: 50px;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+.dev-error-message{
+    text-align:justify;
+    color: aliceblue;
+    width: 400px;
+}
+.dev-error-icon-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+.dev-error-icon{
+    font-size: 30px;
+   
+}
+.dev-error-icon-message{
+    color: antiquewhite;
+}

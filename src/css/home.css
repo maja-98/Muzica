@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background:linear-gradient(to right,rgba(51, 51, 213, 0.816),rgba(88, 152, 249, 0.877),rgb(100, 165, 255));
+    background:linear-gradient(to right,rgba(6, 6, 96, 0.816),rgba(76, 3, 165, 0.877),rgb(100, 165, 255));
     z-index: 2;
 }
 .overlay-message-box{
@@ -15,7 +15,7 @@
 
 }
 .overlay-message{
-    background-color: rgba(54, 54, 158, 0.756);
+    background-color: rgba(4, 4, 134, 0.44);
     color: aliceblue;
     padding: 10px;
     width: 100%;

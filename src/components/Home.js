@@ -2,9 +2,12 @@ import React, {useState } from 'react'
 import PlayerMain from './PlayerMain'
 
 export default function Home() {
-  const [overlay,setOverlay] = useState(true)
+  const overlaySessionStorage = JSON.parse(sessionStorage.getItem("muzicaOverlay"))
+  const overlayVal = overlaySessionStorage===null ? true : overlaySessionStorage
+  const [overlay,setOverlay] = useState(overlayVal)
   const handleOverlay = () =>{
     setOverlay(false)
+    sessionStorage.setItem("muzicaOverlay",false)
   }
   return (
     <div>

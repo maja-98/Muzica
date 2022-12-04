@@ -24,7 +24,6 @@ const songsList = songs
 const endValue = songs.length>0 ? false : true
 const currentSongTemp = endValue===false ? songsList[0] : defaultSong
 export default function PlayerMain({overlay}) {
-  console.log(overlay)
   const [songQueue , setSongQueue] = useState(songsList)
   const [currentSong, setCurrentSong] = useState(currentSongTemp)
   const [constrains,setConstrains] = useState({firstSong:null,'lastSong':null,'changeVar':0,'direction':null,end:endValue}) 
@@ -218,7 +217,7 @@ export default function PlayerMain({overlay}) {
 
   return (
     <>
-      <div className='thumbnail' style={{backgroundImage:`url(${currentSong.thumbnail})`,opacity: overlay===true?0.1:1}}>
+      <div className='thumbnail' style={{backgroundImage:`url(${currentSong.thumbnail})`,opacity: overlay===true?0.5:1}}>
         <NavBar constrains={constrains} currentSong={currentSong}/>
         <div className='main-content'>
           <SongQueueComp

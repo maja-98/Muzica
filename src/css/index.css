@@ -3,6 +3,7 @@
 @import './song-queue.css';
 @import './navbar.css';
 @import './home.css';
+@import './deverror.css';
 html{
   margin: 0px;
   padding: 0px;
@@ -23,7 +24,7 @@ p,span{
   font-family: 'Courier New', Courier, monospace;
   margin: 0;
 }
-button{
+button,.nav-links{
   background: transparent;
   border: none;
   font-size: 20px;

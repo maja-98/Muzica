@@ -23,6 +23,10 @@
 }
 
 .nav-links{
+    font-family: inherit;
+        color: azure;
+        opacity: 0.8;
+        text-align: center;
     filter: invert(100%) sepia(0%) saturate(491%) hue-rotate(190deg) brightness(180%) contrast(90%);
     animation: fade-in 2s;
 }
@@ -64,12 +68,8 @@
 .profile-img:hover{
     opacity: 1;
 }
-.nav-menu >button{
-    font-family: inherit;
-    color: azure;
-    opacity: 0.8;
-}
-.nav-menu>button:hover {
+
+.nav-links:hover {
     transform: scale(1.1);
     opacity: 1;
 }
