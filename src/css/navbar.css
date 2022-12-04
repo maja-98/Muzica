@@ -10,6 +10,7 @@
 .logo-title {
     color: rgba(255, 255, 255, 0.877);
     margin-left: 10px;
+    opacity: 0.8;
 }
 .nav-menu{
     height: fit-content;

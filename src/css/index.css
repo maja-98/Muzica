@@ -32,3 +32,8 @@ button,.nav-links{
   margin: 5px;
 }
 
+@media screen and (max-width:768px){
+  button, .nav-links {
+    font-size: 15px;
+  }
+}

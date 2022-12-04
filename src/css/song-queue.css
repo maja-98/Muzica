@@ -10,8 +10,6 @@
     border-radius: 10px;
     grid-template-columns: 1fr 2fr 1fr;
     height: 65px;
-    
-    
 }
 .song-queue-item{
     animation: left-in 1s;
@@ -119,12 +117,32 @@
 .emoji:hover > .sad{
     display: none;
 }
-/* .emoji > .sad,.emoji:hover>.happy{
-    display: block;
+@media screen and (max-width:768px) {
+    .song-queue-item,.song-queue-item-all-songs{
+        height: 50px;
+        margin: 2px;
+    }
+    .song-details>h5 {
+        font-size: 12px;
+    }
+    .song-details>h6{
+        font-size: 11px;
+    }
+    .song-image {
+        width: 40px;
+        margin: 2px;
+    }
+    .song-queue>h2 {
+        font-size: 15px;
+    }
+    .songs-list-container{
+        height: 500px;
+    }
+    .no-song-queue>p {
+        margin: auto;
+        font-size: 12px;
+    }
 }
-.emoji:{
-    display: ;
-} */
 @keyframes left-in {
     0% {
         transform: translateX(30px);
