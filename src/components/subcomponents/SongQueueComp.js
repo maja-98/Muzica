@@ -1,9 +1,9 @@
 import React from 'react'
-import {  PlayFill , DashCircle , Heart, EmojiFrownFill,EmojiSmileFill} from "react-bootstrap-icons";
+import {  PlayFill , DashCircle , Heart, EmojiFrownFill,EmojiSmileFill, HeartFill} from "react-bootstrap-icons";
 
 
 
-export default function SongQueueComp({songs,currentSong, handleRemoveQueue,handlePlayFromQueue,playRandomSong}) {
+export default function SongQueueComp({songs,currentSong, handleRemoveQueue,handlePlayFromQueue,playRandomSong,handleFavourites}) {
   return (
     <div className='song-queue' >
       <h2>Current Playlist</h2>
@@ -30,7 +30,7 @@ export default function SongQueueComp({songs,currentSong, handleRemoveQueue,hand
               <h6>{song.artist}</h6>
             </div>
             <div className='song-attributes'>
-              <button><Heart/></button>
+              <button onClick={() => handleFavourites(song.vid)}> {song.favourites === true ? <HeartFill/> : <Heart/>}</button>
               <button><DashCircle onClick={(id) => handleRemoveQueue(song.id)}/></button>
             </div>
           </div>

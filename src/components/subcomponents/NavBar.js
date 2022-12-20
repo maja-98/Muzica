@@ -3,7 +3,7 @@ import { MusicNote,HeartFill ,InfoCircleFill,CaretDown,CaretUpFill} from 'react-
 import { Link } from 'react-router-dom'
 
 
-export default function NavBar({constrains,currentSong}) {
+export default function NavBar({constrains,currentSong,queueDisplay}) {
     const [navBarDisplay, setNavBarDisplay] = useState(false)
     const handleExpand = () =>{
         const navMenu = document.querySelector('.nav-menu') 
@@ -21,8 +21,8 @@ export default function NavBar({constrains,currentSong}) {
     }
     return (
     <div className='navbar-container'>
-      <h1 className='logo-title'>MUZICA</h1>
-      {!constrains.end && 
+      <h1 className='logo-title'>MUZICA </h1>
+      {!constrains.end && queueDisplay &&
         <div className='track-main-details'>
             <h2 className='song-title'><span>&#119136;</span>{currentSong.title}</h2>
             <h3 className='artist-title'>{currentSong.artist}</h3>

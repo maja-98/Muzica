@@ -125,4 +125,8 @@ const AllSongs = [
   }
 
 ]
+AllSongs.map(song => {
+  song['favourites'] =false
+  return song
+})
 export default AllSongs;
