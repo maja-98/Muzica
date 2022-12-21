@@ -5,12 +5,14 @@ import Player from './subcomponents/Player';
 import SongQueueComp from './subcomponents/SongQueueComp';
 import NavBar from './subcomponents/NavBar'; 
 import { PlayerContext } from '../App';
+import Favourites from './subcomponents/Favourites';
 
 
 
 
 export default function PlayerMain({overlay,queueDisplay}) {
   const [duration,setDuration] = useState({currentDuration:0,totalDuration:0})
+  const [favDisplay, setFavDisplay] = useState(false)
   
   const {favourites,
             handleAddQueue,
@@ -27,7 +29,9 @@ export default function PlayerMain({overlay,queueDisplay}) {
             PlayBtn,
             PauseBtn,
             defaultSong,
-            audioRef
+            audioRef,
+            message,
+            handleRemoveMessage
             } = useContext(PlayerContext)
   const [pageThumbnail,setPageThumbnail] = useState(currentSong.thumbnail)
   useEffect(() => {
@@ -60,6 +64,14 @@ export default function PlayerMain({overlay,queueDisplay}) {
   useEffect(()=>{
     queueDisplay === false? setPageThumbnail(defaultSong.thumbnail):setPageThumbnail(currentSong.thumbnail)
   },[queueDisplay,currentSong,defaultSong.thumbnail])
+  useEffect(()=>{
+    if (message.status){
+  
+    setTimeout(()=>{
+      handleRemoveMessage()
+    },2000)
+  }
+  },[message,handleRemoveMessage])
   const handleUpdateTimeLine = () =>{
       const timeline = document.querySelector('.timeline');
       const currentDuration = audioRef.current.currentTime
@@ -74,6 +86,9 @@ export default function PlayerMain({overlay,queueDisplay}) {
     const time = (timeline.value * audioRef.current.duration) / 100;
     audioRef.current.currentTime = time;
   }
+  const handlefavDisplay = () =>{
+    setFavDisplay((prevFavDisplay) => !prevFavDisplay)
+  }
 
 
 
@@ -82,8 +97,8 @@ export default function PlayerMain({overlay,queueDisplay}) {
     <>
       <div className='thumbnail' style={{backgroundImage:`url(${pageThumbnail})`,opacity: overlay===true?0.5:1}}>
         
-        <NavBar constrains={constrains} currentSong={currentSong} queueDisplay={queueDisplay}/>
-        {queueDisplay && <div className='main-content'>
+        <NavBar constrains={constrains} currentSong={currentSong} favDisplay={favDisplay}  queueDisplay={queueDisplay} handlefavDisplay={handlefavDisplay}/>
+        {!favDisplay && queueDisplay && <div className='main-content'>
           <SongQueueComp
           songs = {songQueue}
           currentSong = {currentSong}
@@ -101,6 +116,14 @@ export default function PlayerMain({overlay,queueDisplay}) {
           handleFavourites = {handleFavourites}
           />
         </div>}
+        {
+          favDisplay && <Favourites/>
+        }
+        {console.log(message.status)}
+        {message.status && <div className='message-container'>
+            <p className='message'>{message.message}</p>
+          </div>
+          }
         {!constrains.end && <audio 
           src={currentSong.songFile}
           ref={audioRef}

@@ -44,10 +44,17 @@ function App() {
     const [constrains,setConstrains] = useState({firstSong:null,'lastSong':null,'changeVar':0,'direction':null,end:endValue}) 
     const [songQueue , setSongQueue] = useState(songsList)
     const [favourites,setFavourites] = useState(User['maja'].favourites)
+    const [message,setMessage] = useState({'status':false,'message':''})
     const audioRef = useRef(null)
     const handleOverlay = () =>{
         setOverlay(false)
         sessionStorage.setItem("muzicaOverlay",false)
+    }
+    const handleAddMessage = (message) =>{
+        setMessage({'status':true,'message':message})
+    }
+    const handleRemoveMessage = () =>{
+        setMessage({'status':false,'message':''})
     }
     const handleAddQueue = (id) =>{
         
@@ -71,6 +78,7 @@ function App() {
         setConstrains({firstSong:null,'lastSong':null,'changeVar':0,'direction':'N',end:false})
         
         }
+        handleAddMessage('Song Added to Queue')
     }
     const handleRemoveQueue = (id) =>{
         // const removDiv = document.querySelector('.queue-item-'+id)
@@ -198,7 +206,7 @@ function App() {
             const queueExist = songQueue.find(song => song.vid===id)
             if(favList.find(song => song.id === id) === undefined ){
             favList.push(AllSongsList.find((song) => song.id === id))
-            // console.log(AllSongsList.find((song) => song.id === id))
+            console.log(AllSongsList.find((song) => song.id === id))
             AllSongsList.find((song) => song.id === id).favourites = true
             
             if (queueExist!== undefined){
@@ -227,22 +235,26 @@ function App() {
     const router = createBrowserRouter([
         {
             path:"/",
-            element: <PlayerContext.Provider value ={{favourites,
-            handleAddQueue,
-            playRandomSong,
-            handlePlayFromAllSongs,
-            handlePlayFromQueue,
-            constrains,
-            currentSong,
-            songQueue,
-            handleRemoveQueue,
-            handleFavourites,
-            handleChangeSong,
-            handlePlay,
-            PlayBtn,
-            PauseBtn,
-            defaultSong,
-            audioRef
+            element: <PlayerContext.Provider value ={{
+                favourites,
+                constrains,
+                currentSong,
+                songQueue,
+                PlayBtn,
+                PauseBtn,
+                defaultSong,
+                audioRef,
+                message,
+                handleAddMessage,
+                handleRemoveMessage,
+                handleRemoveQueue,
+                handleFavourites,
+                handleChangeSong,
+                handlePlay,
+                handleAddQueue,
+                playRandomSong,
+                handlePlayFromAllSongs,
+                handlePlayFromQueue
             }}>
                     <Home 
                     overlay={overlay}
@@ -264,7 +276,25 @@ function App() {
         },   
         {
             path:'/fav-songs/',
-            element:<Favourites/>
+            element:<PlayerContext.Provider value ={{
+                favourites,
+                constrains,
+                currentSong,
+                songQueue,
+                PlayBtn,
+                PauseBtn,
+                defaultSong,
+                audioRef,
+                handleRemoveQueue,
+                handleFavourites,
+                handleChangeSong,
+                handlePlay,
+                handleAddQueue,
+                playRandomSong,
+                handlePlayFromAllSongs,
+                handlePlayFromQueue,
+            }}><Favourites/>
+            </PlayerContext.Provider>
         },    
         {
             path:'/signup/',

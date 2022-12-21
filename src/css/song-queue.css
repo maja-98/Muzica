@@ -117,6 +117,18 @@
 .emoji:hover > .sad{
     display: none;
 }
+.song-search{
+    width: 40%;
+    height: 25px;
+    padding: 5px;
+    outline: 0;
+    background-color: rgba(96, 143, 172, 0.204);
+    color: aliceblue;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 5px;
+    border: 0px;
+    margin-bottom: 10px;
+}
 @media screen and (max-width:768px) {
     .song-queue-item,.song-queue-item-all-songs{
         height: 50px;

@@ -1,0 +1,33 @@
+.favourite-queue{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:80%;
+    top: 100px;
+    padding-left: 100px;
+}
+.no-fav-song{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: aliceblue;
+    height: 200px;
+    padding: 10px;
+    padding-left: 130px;
+
+    margin: 20px;
+}
+.fav-heading{
+    color: rgba(240, 248, 255, 0.578);
+    font-size: 30px;
+    padding: 20px;
+    padding-left: 60px;
+}
+.no-fav-song>p {
+    max-width: 300px;
+    margin: 20px;
+    text-align: center;
+}

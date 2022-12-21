@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { MusicNote,HeartFill ,InfoCircleFill,CaretDown,CaretUpFill} from 'react-bootstrap-icons'
+import { MusicNote,HeartFill ,InfoCircleFill,CaretDown,CaretUpFill,HouseFill} from 'react-bootstrap-icons'
 import { Link } from 'react-router-dom'
 
 
-export default function NavBar({constrains,currentSong,queueDisplay}) {
+export default function NavBar({constrains,currentSong,queueDisplay,handlefavDisplay,favDisplay}) {
     const [navBarDisplay, setNavBarDisplay] = useState(false)
     const handleExpand = () =>{
         const navMenu = document.querySelector('.nav-menu') 
@@ -30,9 +30,11 @@ export default function NavBar({constrains,currentSong,queueDisplay}) {
         }
 
       <div className='nav-menu'>
+
         {navBarDisplay && <Link to={'/about/'} className='nav-links' title='About'><InfoCircleFill/></Link> }
-        {navBarDisplay && <Link to={'/fav-songs/'} className='nav-links' title='Favourites'><HeartFill/></Link> }
         {navBarDisplay && <Link to={'/all-songs/'} className='nav-links' title='All Songs'><MusicNote/></Link> }
+        {navBarDisplay && <button className='nav-links' onClick={handlefavDisplay} title='Favourites'>{favDisplay===false ? <HeartFill/>:<HouseFill/>}</button> }
+
         <div className='profile'>
             <img className='profile-img' src='https://muzica-22.s3.ap-south-1.amazonaws.com/Default/Avatar.png' alt=''></img>
             <h6>MAJA</h6>
