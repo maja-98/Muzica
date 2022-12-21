@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { MusicNote,HeartFill ,InfoCircleFill,CaretDown,CaretUpFill,HouseFill} from 'react-bootstrap-icons'
-import { Link } from 'react-router-dom'
+import { MusicNote,HeartFill ,InfoCircleFill,CaretDown,CaretUpFill,HouseFill, CaretLeftFill, CaretRightFill} from 'react-bootstrap-icons'
+// import { Link } from 'react-router-dom'
 
 
 export default function NavBar({constrains,currentSong,queueDisplay,handlefavDisplay,favDisplay}) {
@@ -30,15 +30,18 @@ export default function NavBar({constrains,currentSong,queueDisplay,handlefavDis
         }
 
       <div className='nav-menu'>
-
-        {navBarDisplay && <Link to={'/about/'} className='nav-links' title='About'><InfoCircleFill/></Link> }
-        {navBarDisplay && <Link to={'/all-songs/'} className='nav-links' title='All Songs'><MusicNote/></Link> }
-        {navBarDisplay && <button className='nav-links' onClick={handlefavDisplay} title='Favourites'>{favDisplay===false ? <HeartFill/>:<HouseFill/>}</button> }
-
-        <div className='profile'>
+        {navBarDisplay && <div className='nav-links-container'>
+          <button className='nav-links' title='About'><InfoCircleFill/></button> 
+           <button className='nav-links' title='All Songs'><MusicNote/></button> 
+           <button className='nav-links' onClick={handlefavDisplay} title='Favourites'>{favDisplay===false ? <HeartFill/>:<HouseFill/>}</button> 
+        </div>}
+        <div className='profile-container'>
+          <div className='profile'>
             <img className='profile-img' src='https://muzica-22.s3.ap-south-1.amazonaws.com/Default/Avatar.png' alt=''></img>
-            <h6>MAJA</h6>
+            <h6>User</h6>
+          </div>
             <span  onClick={handleExpand} className='profile-down-arrow'>{navBarDisplay===true ? <CaretUpFill/>:<CaretDown/>}</span>
+            <span  onClick={handleExpand} className='profile-left-arrow'>{navBarDisplay===true ? <CaretRightFill/>:<CaretLeftFill/>}</span>
         </div>
       </div>
     </div>

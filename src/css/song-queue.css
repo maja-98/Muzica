@@ -126,8 +126,12 @@
     color: aliceblue;
     font-family: 'Courier New', Courier, monospace;
     border-radius: 5px;
-    border: 0px;
+    border: 2px  rgba(0, 45, 142, 0.21);
+    border-style: outset;
     margin-bottom: 10px;
+}
+.song-search::placeholder{
+    color:rgba(240, 248, 255, 0.459)
 }
 @media screen and (max-width:768px) {
     .song-queue-item,.song-queue-item-all-songs{

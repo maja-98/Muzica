@@ -7,6 +7,10 @@
     justify-content: space-between;
     color: aliceblue;
 }
+.nav-links-container{
+    display: flex;
+    flex-direction: column-reverse;
+}
 .logo-title {
     color: rgba(255, 255, 255, 0.877);
     margin-left: 10px;
@@ -45,8 +49,9 @@
     text-align: center;
 
 }
-.profile-down-arrow{
+.profile-down-arrow,.profile-left-arrow{
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(200deg) brightness(402%) contrast(0%);
+    opacity: 0.8;
 }
 .profile{
     display: flex;
@@ -56,9 +61,6 @@
     align-items: center;
     cursor: pointer;
     
-}
-.profile-down-arrow{
-  opacity: 0.8;  
 }
 .profile-img{
     width: 50px;
@@ -74,7 +76,44 @@
     transform: scale(1.1);
     opacity: 1;
 }
+.profile-left-arrow{
+    display: none;
+}
+.profile-down-arrow {
+    display: block;
+}
+.profile-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+@media screen and (max-width:768px) {
+    .profile-down-arrow{
+        display: none;
+    }
+    .profile-container{
+        flex-direction: row-reverse;
+    }
+    .profile > h6{
+        font-size: 10px;
+    }
+    .nav-menu{
+        flex-direction: row;
+        border-radius: 10px;
+    }
+    .profile-left-arrow {
+        display: block;
+    }
 
+    .nav-links {
+        padding: 2px;
+        margin: 2px;
+    }
+    .profile-img{
+        width: 30px;
+    }
+}
 @keyframes fade-in {
     0%{
         opacity: 0;

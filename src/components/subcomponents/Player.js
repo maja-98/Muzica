@@ -18,8 +18,9 @@ export default function Player({handleChangeSong,handlePlay,handleUpdateDuration
     if (seconds){
     let minutes = Math.floor(seconds/60)
     let addSeconds = seconds % 60
+    addSeconds = Math.floor(addSeconds)
     minutes = minutes < 10 ? '0'+minutes : minutes
-    addSeconds = addSeconds < 10 ? '0'+Math.round(addSeconds,2) : Math.round(addSeconds,2)
+    addSeconds = addSeconds < 10 ? '0'+addSeconds : addSeconds
     return minutes+':'+addSeconds}
     else{
       return '00:00'
