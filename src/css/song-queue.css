@@ -138,13 +138,15 @@
         height: 30px;
         padding: 5px;
         margin: 4px;
+        width: 90%;
         
         }
+
     .song-details>h5 {
-        font-size: 9px;
+        font-size: 8px;
     }
     .song-details>h6{
-        font-size: 8px;
+        font-size: 7px;
     }
     .song-image {
         width: 40px;
@@ -157,17 +159,24 @@
     .songs-list-container{
         height: 300px;
     }
+    .no-song-queue>h4{
+        font-size: 10px;
+    }
     .no-song-queue>p {
         margin: auto;
-        font-size: 12px;
+        font-size: 9px;
     }
-        .song-search {
-            width: 50%;
-            height: 15px;
-            padding: 2px;
-            font-size: 10px;
-            margin-bottom: 0px;
-        }
+    .song-search {
+        width: 50%;
+        height: 15px;
+        padding: 3px;
+        font-size: 9px;
+        margin-bottom: 0px;
+    }
+    .song-attributes > button{
+        margin: 3px;
+        padding-right: 3px;
+    }
 }
 @keyframes left-in {
     0% {
