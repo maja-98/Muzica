@@ -7,7 +7,7 @@ export default function SongQueueComp({songs,currentSong, handleRemoveQueue,hand
   return (
     <div className='song-queue' >
       <h2>Current Playlist</h2>
-      <div className='songs-list-container'>
+      <div className='songs-list-container' id='song-list-container-upd'>
         {songs.length===0 && <div className='no-song-queue'>
           <h4>Nothing to Play </h4>
           <p>Please add some songs from rightside to begin</p>

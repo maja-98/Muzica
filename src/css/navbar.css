@@ -113,6 +113,10 @@
     .profile-img{
         width: 30px;
     }
+    #song-list-container-upd{
+        margin-top: 5px;;
+        height: 325px;
+    }
 }
 @keyframes fade-in {
     0%{
