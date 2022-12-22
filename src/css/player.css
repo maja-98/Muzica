@@ -8,7 +8,6 @@
 
 .controls {
     height: 90px;
-    align-items: center;
     display: grid;
     grid-template-columns: 3fr 6fr 3fr;
     align-items: center;
@@ -148,6 +147,26 @@ svg:hover {
     color: rgba(220, 230, 255,0.9)
 }
 
+
+
+@media screen and (max-width:768px) {
+    .timeline{
+        height: 6px;
+    }
+    .duration {
+        font-size: 9px;
+    }
+    #vol-percent{
+        font-size: 10px;
+        margin-bottom: 2px;
+    }
+    .controls {
+        height: 80px;
+    }
+    #volume-control {
+        width: 45px;
+    }
+}
 @keyframes bottom-in {
     0%{
         transform: translateY(100px);

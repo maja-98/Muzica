@@ -36,10 +36,10 @@
     width: 95%;
 }
 .message-container {
-    position: absolute;
+    position: fixed;
     bottom: 150px;
     left: 44%;
-    background-color: rgba(0, 77, 153, 0.33);
+    background-color: rgba(44, 89, 133, 0.33);
     height: 30px;
     display: flex;
     align-items: center;
@@ -72,6 +72,9 @@
 .main-content {
     width: 100%;
     margin:    0px;
+}
+.message-container {
+    left: 33%;
 }
 
 /* .main-content{

@@ -31,3 +31,16 @@
     margin: 20px;
     text-align: center;
 }
+@media screen and (max-width:768px) {
+    .favourite-queue {
+        width: 80%;
+        padding-left: 35px;
+    }
+    .fav-heading {
+        padding-left: 40px;
+        font-size: 13px;
+    }
+    .no-fav-song {
+       padding-left: 15px;
+    }
+}
