@@ -9,7 +9,6 @@ import Login from './components/Login'
 import Error from './components/Error'
 import Favourites from './components/subcomponents/Favourites'
 import AvailbleSongsList from './components/subcomponents/AvailbleSongsList'
-import User from './Users';
 export const PlayerContext = React.createContext()
 
 
@@ -29,21 +28,24 @@ const PlayBtn = `<svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" cl
   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/>
 </svg>`;
 
-const songs =[]
-const songsList = songs
-const endValue = songs.length>0 ? false : true
-const currentSongTemp = endValue===false ? songsList[0] : defaultSong
-
-
+const exisitingQueue = JSON.parse(localStorage.getItem("MuzicaSongQueue"))
+const songsList = exisitingQueue===null? []:exisitingQueue
+const endValue = songsList.length>0 ? false : true
+const exisitingSong = JSON.parse(localStorage.getItem("MuzicaCurrentSong")) 
+const currentSongTemp = exisitingSong===null ? defaultSong : exisitingSong
+const existingFavourites = JSON.parse(localStorage.getItem('MuzicaFavourites'))
+const favouritesList = existingFavourites===null ? []: existingFavourites
+const existingConstrains = JSON.parse(localStorage.getItem('MuzicaConstrains'))
+const constrainsValue = existingConstrains === null ? {firstSong:null,'lastSong':null,'changeVar':0,'direction':null,end:endValue} : {...existingConstrains,changeVar:0}
 
 function App() {
     const overlaySessionStorage = JSON.parse(sessionStorage.getItem("muzicaOverlay"))
     const overlayVal = overlaySessionStorage===null ? true : overlaySessionStorage
     const [overlay,setOverlay] = useState(overlayVal)
     const [currentSong, setCurrentSong] = useState(currentSongTemp)
-    const [constrains,setConstrains] = useState({firstSong:null,'lastSong':null,'changeVar':0,'direction':null,end:endValue}) 
+    const [constrains,setConstrains] = useState(constrainsValue) 
     const [songQueue , setSongQueue] = useState(songsList)
-    const [favourites,setFavourites] = useState(User['maja'].favourites)
+    const [favourites,setFavourites] = useState(favouritesList)
     const [message,setMessage] = useState({'status':false,'message':''})
     const audioRef = useRef(null)
     const handleOverlay = () =>{
@@ -68,14 +70,20 @@ function App() {
             'vid':id
         }
         NewQueue.push(NewSong)
+        localStorage.setItem('MuzicaSongQueue',JSON.stringify(NewQueue))
         return (NewQueue)
         })
         if (constrains.end){
         setCurrentSong(() => {
         const song = AllSongsList.find((song) => song.id === id)
+        localStorage.setItem("MuzicaCurrentSong",JSON.stringify({...song,'id':1}))
         return {...song,'id':1}
         })
-        setConstrains({firstSong:null,'lastSong':null,'changeVar':0,'direction':'N',end:false})
+        setConstrains(() => {
+            const constrainsNew = {firstSong:null,'lastSong':null,'changeVar':0,'direction':'N',end:false}
+            localStorage.setItem('MuzicaConstrains',JSON.stringify(constrainsNew))
+            return constrainsNew
+        })
         
         }
         handleAddMessage('Song Added to Queue')
@@ -89,8 +97,13 @@ function App() {
         // console.log(songCount,currentSong.id , removeSong.id,songCount===1)
         
         if (songCount===1){
+            localStorage.setItem("MuzicaCurrentSong",JSON.stringify(defaultSong))
         setCurrentSong(defaultSong)
-        setConstrains((prevConstrains) => ({...prevConstrains,'end':true,'direction':null}))
+        setConstrains((prevConstrains) => {
+            const constrainsNew = ({...prevConstrains,'end':true,'direction':null})
+            localStorage.setItem('MuzicaConstrains',JSON.stringify(constrainsNew))
+            return constrainsNew
+        })
         }
         
         else if (currentSong.id=== removeSong.id){
@@ -104,7 +117,9 @@ function App() {
         }
 
         setSongQueue((prevQueue) => {
-        return prevQueue.filter((song) => song.id !== removeSong.id)
+            const NewQueue = localStorage.setItem('MuzicaSongQueue',JSON.stringify(NewQueue))
+            localStorage.setItem('MuzicaSongQueue',JSON.stringify(NewQueue))
+        return NewQueue
         })
     }
     const playRandomSong = () =>{
@@ -113,15 +128,20 @@ function App() {
         const NewQueue = [{...song, 'id':1,'vid':song.id}]
 
         setSongQueue(()=>{
+            localStorage.setItem('MuzicaSongQueue',JSON.stringify(NewQueue))
         return NewQueue
         })
 
         setCurrentSong((prevSong) => {
+            localStorage.setItem("MuzicaCurrentSong",JSON.stringify(NewQueue[0]))
             return NewQueue[0]
         })
         setConstrains((prevConstrains) => {
+            
         const newVar = prevConstrains.changeVar+1
-        return {...prevConstrains,'lastSong':false,'firstSong':false,'changeVar':newVar,'direction':null,'end':false}
+        const constrainsNew = {...prevConstrains,'lastSong':false,'firstSong':false,'changeVar':newVar,'direction':null,'end':false}
+        localStorage.setItem('MuzicaConstrains',JSON.stringify(constrainsNew))
+        return constrainsNew
         })
     }
     const handlePlayFromAllSongs = (id) =>{
@@ -129,24 +149,32 @@ function App() {
         const NewQueue = [{...song, 'id':1,'vid':song.id}]
 
         setSongQueue(()=>{
+            localStorage.setItem('MuzicaSongQueue',JSON.stringify(NewQueue))
         return NewQueue
         })
 
         setCurrentSong((prevSong) => {
+            localStorage.setItem("MuzicaCurrentSong",JSON.stringify(NewQueue[0]))
             return NewQueue[0]
         })
         setConstrains((prevConstrains) => {
         const newVar = prevConstrains.changeVar+1
-        return {...prevConstrains,'lastSong':false,'firstSong':false,'changeVar':newVar,'direction':null,'end':false}
+        const constrainsNew = {...prevConstrains,'lastSong':false,'firstSong':false,'changeVar':newVar,'direction':null,'end':false}
+        localStorage.setItem('MuzicaConstrains',JSON.stringify(constrainsNew))
+        return constrainsNew
         })
     }
     const handlePlayFromQueue = (id) =>{
         setCurrentSong((prevSong) => {
-            return songQueue.find((song) => song.id === id)
+            const newSong =songQueue.find((song) => song.id === id)
+            localStorage.setItem("MuzicaCurrentSong",JSON.stringify(newSong))
+            return newSong
         })
         setConstrains((prevConstrains) => {
         const newVar = prevConstrains.changeVar+1
-        return {...prevConstrains,'lastSong':false,'firstSong':false,'changeVar':newVar,'direction':null,'end':false}
+        const constrainsNew =  {...prevConstrains,'lastSong':false,'firstSong':false,'changeVar':newVar,'direction':null,'end':false}
+        localStorage.setItem('MuzicaConstrains',JSON.stringify(constrainsNew))
+        return constrainsNew
         })
         
     }
@@ -157,6 +185,7 @@ function App() {
         let newIndex = indexSong+val 
         const direction = val >0 ? 'F' : 'B'
         newIndex = constrainManager(newIndex,direction,songCount)
+        localStorage.setItem("MuzicaCurrentSong",JSON.stringify(songQueue[newIndex]))
         return songQueue[newIndex]
         }
         )}
@@ -164,13 +193,17 @@ function App() {
         if (newIndex>=0 && newIndex <=songCount-1){
             setConstrains((prevConstrains) => {
             const newVar = prevConstrains.changeVar+1
-            return {...prevConstrains,'lastSong':false,'firstSong':false,'direction':direction,'changeVar':newVar,'end':false}
-            })
+            const constrainsNew =  {...prevConstrains,'lastSong':false,'firstSong':false,'direction':direction,'changeVar':newVar,'end':false}
+            localStorage.setItem('MuzicaConstrains',JSON.stringify(constrainsNew))
+            return constrainsNew
+        })
         }
         if (newIndex<0){
             setConstrains((prevConstrains) => {
             const newVar = prevConstrains.changeVar+1
-            return {...prevConstrains,'firstSong':true,'changeVar':newVar,'direction':direction,'end':false}
+            const constrainsNew =  {...prevConstrains,'firstSong':true,'changeVar':newVar,'direction':direction,'end':false}
+            localStorage.setItem('MuzicaConstrains',JSON.stringify(constrainsNew))
+            return constrainsNew
             })
             newIndex = 0
         }
@@ -178,7 +211,9 @@ function App() {
             newIndex =songCount-1
             setConstrains((prevConstrains) => {
             const newVar = prevConstrains.changeVar+1
-            return {...prevConstrains,'lastSong':true,'changeVar':newVar,'direction':direction,'end':false}
+            const constrainsNew =  {...prevConstrains,'lastSong':true,'changeVar':newVar,'direction':direction,'end':false}
+            localStorage.setItem('MuzicaConstrains',JSON.stringify(constrainsNew))
+            return constrainsNew
             })
         }
         return newIndex
@@ -187,7 +222,11 @@ function App() {
         const AudioStatus = audioRef.current.paused
         if (constrains.lastSong=== true && AudioStatus ){
         audioRef.current.currentTime = 0
-        setConstrains((prevConstrains) => ({...prevConstrains,changeVar:0,end:false,lastSong:false}))
+        setConstrains((prevConstrains) =>{
+             const constrainsNew = ({...prevConstrains,changeVar:0,end:false,lastSong:false})
+             localStorage.setItem('MuzicaConstrains',JSON.stringify(constrainsNew))
+             return constrainsNew
+        })
         }
         if (AudioStatus){
         e.currentTarget.innerHTML = PauseBtn
@@ -206,7 +245,6 @@ function App() {
             const queueExist = songQueue.find(song => song.vid===id)
             if(favList.find(song => song.id === id) === undefined ){
             favList.push(AllSongsList.find((song) => song.id === id))
-            console.log(AllSongsList.find((song) => song.id === id))
             AllSongsList.find((song) => song.id === id).favourites = true
             
             if (queueExist!== undefined){
@@ -228,6 +266,9 @@ function App() {
                 }
             }
             }
+            localStorage.setItem('MuzicaSongQueue',JSON.stringify(songQueue))
+            localStorage.setItem('MuzicaAllSongs',JSON.stringify(AllSongsList))
+            localStorage.setItem('MuzicaFavourites',JSON.stringify(favList))
             return favList
         })
     }

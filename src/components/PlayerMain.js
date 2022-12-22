@@ -119,7 +119,6 @@ export default function PlayerMain({overlay,queueDisplay}) {
         {
           favDisplay && <Favourites/>
         }
-        {console.log(message.status)}
         {message.status && <div className='message-container'>
             <p className='message'>{message.message}</p>
           </div>

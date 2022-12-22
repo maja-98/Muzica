@@ -5,8 +5,14 @@ export default function Player({handleChangeSong,handlePlay,handleUpdateDuration
   const handleAudioBarToggle = () => {
     const volBar = document.querySelector('#volume-control')
     const volPercent = document.querySelector('#vol-percent')
+    if (volBar.style.display==='') {
+      volBar.style.display = 'none'
+    }
+    if  (volPercent.style.display ===''){
+      volPercent.style.display = 'inline-block'
+    }
     volBar.style.display = volBar.style.display==='none' ?  'inline-block' : 'none'
-    volPercent.style.display = volBar.style.display==='none' ?  'inline-block' : 'none'
+    volPercent.style.display = volPercent.style.display==='none'  ?  'inline-block' : 'none'
   }
   const handleVolumeControl = () =>{
     const volBar = document.querySelector('#volume-control')

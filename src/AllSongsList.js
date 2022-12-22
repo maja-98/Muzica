@@ -1,7 +1,3 @@
-
-
-
-
 const AllSongs = [
   {
     id:1,
@@ -129,4 +125,6 @@ AllSongs.map(song => {
   song['favourites'] =false
   return song
 })
-export default AllSongs;
+const existingAllSongs = JSON.parse(localStorage.getItem('MuzicaAllSongs'))
+const AllSongsList = existingAllSongs === null ? AllSongs :existingAllSongs
+export default AllSongsList;

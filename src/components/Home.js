@@ -7,8 +7,7 @@ export default function Home({overlay,handleOverlay}) {
       {overlay &&
       <div className='overlay'>
         <div className='overlay-message-box'>
-          <p className='overlay-message'>This site is not yet completely developed. For Better User experience use Desktop (You can try Desktop Mode in Mobile).
-          As of Now app is incompatible on Mobile devices.
+          <p className='overlay-message'>This site is not yet completely developed. As API for this app not yet build, all actions will be saved under locally
           Also Many of the functionalities yet to build.Will deploy more features soon. Happy Listening!!!</p>
           <div className='overlay-button-container'>
             <button onClick={handleOverlay}>Start Listening</button>

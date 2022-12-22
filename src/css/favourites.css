@@ -58,11 +58,11 @@
     .fav-heading {
         font-size: 20px;
     }
-        .favourite-queue {
-            top:80px;
-            width: 80%;
-            padding-left: 70px;
-        }
+    .favourite-queue {
+        top:80px;
+        width: 80%;
+        padding-left: 70px;
+    }
     .fav-songs-list{
         height: 150px;
     }
