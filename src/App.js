@@ -117,7 +117,7 @@ function App() {
         }
 
         setSongQueue((prevQueue) => {
-            const NewQueue = localStorage.setItem('MuzicaSongQueue',JSON.stringify(NewQueue))
+            const NewQueue = prevQueue.filter((song) => song.id !== removeSong.id)
             localStorage.setItem('MuzicaSongQueue',JSON.stringify(NewQueue))
         return NewQueue
         })
