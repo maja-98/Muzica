@@ -12,6 +12,7 @@ export default function Favourites() {
           
         </div>
           }
+      <div className='fav-songs-list'>
       {favourites.map((song)=>{
         return (
           <div className={"song-queue-item "}  key={song.id} >
@@ -30,6 +31,7 @@ export default function Favourites() {
           </div>
         )
       })}
+      </div>
     </div>
   )
 }

@@ -81,3 +81,17 @@
    
 } */
 }
+@media screen and (max-height:400px) {
+    .song-title {
+            font-size: 18px;
+    
+        }
+.artist-title {
+    font-size: 14px;
+}
+.message-container {
+    left: 33%;
+    bottom: 18%;
+    height: 27px;
+}
+}

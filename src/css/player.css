@@ -151,7 +151,7 @@ svg:hover {
 
 @media screen and (max-width:768px) {
     .timeline{
-        height: 6px;
+        height: 5px;
     }
     .duration {
         font-size: 9px;
@@ -165,7 +165,35 @@ svg:hover {
     }
     #volume-control {
         width: 45px;
+        height: 5px;;
     }
+    #volume-control::-webkit-slider-thumb {
+        height: 8px;
+        width: 8px;
+    }
+}
+@media screen and (max-height:400px) {
+    .controls{
+        height: 60px;
+    }
+    #vol-percent{
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+    #volume-control {
+        width: 100px;
+        height: 10px;
+    }    
+    #volume-control::-webkit-slider-thumb {
+            height: 12px;
+            width: 12px;
+        }
+    .duration {
+        font-size: 12px;
+    }    
+    .timeline {
+            height: 6px;
+        }
 }
 @keyframes bottom-in {
     0%{

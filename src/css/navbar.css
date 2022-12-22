@@ -118,6 +118,41 @@
         height: 325px;
     }
 }
+@media screen and (max-height:400px) {
+    .profile-container {
+        flex-direction: column;
+    }
+
+    .profile>h6 {
+        font-size: 12px;
+    }
+
+    .nav-menu {
+        flex-direction: column-reverse;
+        border-radius: 30px;
+    }
+
+    .profile-left-arrow {
+        display: none;
+    }
+    .profile-down-arrow{
+        display: block;
+    }
+
+    .nav-links {
+        padding: 0px;
+    }
+
+    .profile-img {
+        width: 35px;
+    }
+
+    #song-list-container-upd {
+        margin-top: 5px;
+        ;
+        height: 125px;
+    }
+}
 @keyframes fade-in {
     0%{
         opacity: 0;

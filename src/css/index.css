@@ -46,3 +46,22 @@ button,.nav-links{
     font-size: 12px;
   }
 }
+@media screen and (max-height:400px) {
+    button,
+      .nav-links {
+        font-size: 20px;
+      }
+    
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-size: x-large
+      }
+    
+      p {
+        font-size: 15px;
+      }
+}

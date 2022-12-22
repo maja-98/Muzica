@@ -131,7 +131,8 @@
     margin-bottom: 10px;
 }
 .song-search::placeholder{
-    color:rgba(240, 248, 255, 0.459)
+    color:rgba(240, 248, 255, 0.459);
+    text-align: center;
 }
 @media screen and (max-width:768px) {
     .song-queue-item,.song-queue-item-all-songs{
@@ -177,6 +178,70 @@
         margin: 3px;
         padding-right: 3px;
     }
+}
+@media screen and (max-height:400px) {
+    .main-content{
+        top:110px;
+        width: 95%;
+    }
+    .song-queue-item,
+        .song-queue-item-all-songs {
+            height: 40px;
+            padding: 5px;
+            margin: 4px;
+            width: 90%;
+
+        }
+
+    .song-details>h5 {
+        font-size: 11px;
+        padding-bottom: 5px;
+    }
+
+    .song-details>h6 {
+        font-size: 10px;
+    }
+
+    .song-image {
+        width: 50px;
+        margin: 3px;
+        padding: 3px;
+    }
+
+    .song-queue>h2 {
+        font-size: 12px;
+        margin-top: 10px;
+    }
+
+    .songs-list-container {
+        height: 100px;
+    }
+
+    .no-song-queue>h4 {
+        font-size: 10px;
+    }
+        .no-song-queue{
+            margin: 0;
+            padding: 0;
+        }
+    .no-song-queue>p {
+        
+        font-size: 12px;
+    }
+
+    .song-search {
+        width: 60%;
+        height: 18px;
+        padding: 4px;
+        font-size: 11px;
+        margin-bottom: 0px;
+    }
+
+    .song-attributes>button {
+        margin: 3px;
+        padding-right: 3px;
+    }
+
 }
 @keyframes left-in {
     0% {

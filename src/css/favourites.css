@@ -1,5 +1,5 @@
 .favourite-queue{
-    position: relative;
+    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -7,6 +7,7 @@
     width:80%;
     top: 100px;
     padding-left: 100px;
+  
 }
 .no-fav-song{
     display: flex;
@@ -23,24 +24,47 @@
 .fav-heading{
     color: rgba(240, 248, 255, 0.578);
     font-size: 30px;
-    padding: 20px;
-    padding-left: 60px;
+    padding: 10px;
+    padding-left: 150px;
 }
 .no-fav-song>p {
     max-width: 300px;
     margin: 20px;
     text-align: center;
 }
+.fav-songs-list{
+    width: 80%;
+   height: 400px;
+    overflow: scroll;
+}
 @media screen and (max-width:768px) {
     .favourite-queue {
-        width: 80%;
-        padding-left: 35px;
+        width: 95%;
+        padding-left:0px;
     }
     .fav-heading {
-        padding-left: 40px;
+        padding-left: 20px;
         font-size: 13px;
     }
     .no-fav-song {
        padding-left: 15px;
     }
+    .fav-songs-list {
+        height: 400px;
+    }
+}
+@media screen and (max-height:400px) {
+
+    .fav-heading {
+        font-size: 20px;
+    }
+        .favourite-queue {
+            top:80px;
+            width: 80%;
+            padding-left: 70px;
+        }
+    .fav-songs-list{
+        height: 150px;
+    }
+
 }
