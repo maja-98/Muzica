@@ -5,6 +5,7 @@
 @import './home.css';
 @import './deverror.css';
 @import './favourites.css';
+@import './about.css';
 html{
   margin: 0px;
   padding: 0px;

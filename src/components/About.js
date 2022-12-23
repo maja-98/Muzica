@@ -1,10 +1,21 @@
 import React from 'react'
-import DevError from './subcomponents/DevError'
-
+import {  Instagram,Github } from "react-bootstrap-icons";
 export default function About() {
   return (
-    <div>
-      <DevError/>
+    <div className='about'>
+      <h1 className='about-title'>MUZICA</h1>
+      <div className='about-container'>
+        <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+           dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex 
+           ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
+           nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.</h5>
+        <div className='about-links'>
+          <a href='https://www.instagram.com/__maj_a__/'><Instagram/></a>
+          <a href='https://github.com/maja-98'><Github/></a>
+        </div>
+        
+      </div>
       
     </div>
   )

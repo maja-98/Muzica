@@ -6,6 +6,7 @@ import SongQueueComp from './subcomponents/SongQueueComp';
 import NavBar from './subcomponents/NavBar'; 
 import { PlayerContext } from '../App';
 import Favourites from './subcomponents/Favourites';
+import About from './About';
 
 
 
@@ -13,6 +14,7 @@ import Favourites from './subcomponents/Favourites';
 export default function PlayerMain({overlay,queueDisplay}) {
   const [duration,setDuration] = useState({currentDuration:0,totalDuration:0})
   const [favDisplay, setFavDisplay] = useState(false)
+  const [aboutDisplay, setAboutDisplay] = useState(false)
   
   const {favourites,
             handleAddQueue,
@@ -88,6 +90,11 @@ export default function PlayerMain({overlay,queueDisplay}) {
   }
   const handlefavDisplay = () =>{
     setFavDisplay((prevFavDisplay) => !prevFavDisplay)
+    setAboutDisplay(false)
+  }
+  const handleAboutDisplay = () => {
+    setAboutDisplay((prevAboutDisplay) => !prevAboutDisplay)
+    setFavDisplay(false)
   }
 
 
@@ -97,8 +104,15 @@ export default function PlayerMain({overlay,queueDisplay}) {
     <>
       <div className='thumbnail' style={{backgroundImage:`url(${pageThumbnail})`,opacity: overlay===true?0.5:1}}>
         
-        <NavBar constrains={constrains} currentSong={currentSong} favDisplay={favDisplay}  queueDisplay={queueDisplay} handlefavDisplay={handlefavDisplay}/>
-        {!favDisplay && queueDisplay && <div className='main-content'>
+        <NavBar 
+          constrains={constrains} 
+          currentSong={currentSong} 
+          favDisplay={favDisplay}  
+          aboutDisplay={aboutDisplay}
+          queueDisplay={queueDisplay} 
+          handlefavDisplay={handlefavDisplay}
+          handleAboutDisplay={handleAboutDisplay}/>
+        {!favDisplay && !aboutDisplay && queueDisplay && <div className='main-content'>
           <SongQueueComp
           songs = {songQueue}
           currentSong = {currentSong}
@@ -117,7 +131,10 @@ export default function PlayerMain({overlay,queueDisplay}) {
           />
         </div>}
         {
-          favDisplay && <Favourites/>
+          favDisplay &&  <Favourites/>
+        }
+        {
+          aboutDisplay && <About/>
         }
         {message.status && <div className='message-container'>
             <p className='message'>{message.message}</p>

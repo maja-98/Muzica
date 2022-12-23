@@ -6,6 +6,7 @@
     display: flex;
     justify-content: space-between;
     color: aliceblue;
+
 }
 .nav-links-container{
     display: flex;
@@ -15,6 +16,7 @@
     color: rgba(255, 255, 255, 0.877);
     margin-left: 10px;
     opacity: 0.8;
+    animation: fade-in 1s linear;
 }
 .nav-menu{
     height: fit-content;
@@ -49,8 +51,8 @@
     text-align: center;
 
 }
-.profile-down-arrow,.profile-left-arrow{
-    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(200deg) brightness(402%) contrast(0%);
+.profile-down-arrow>svg,.profile-left-arrow>svg{
+    filter: invert(10%) sepia(10%) saturate(10%) hue-rotate(100deg) brightness(400%) contrast(100%);
     opacity: 0.8;
 }
 .profile{
@@ -82,11 +84,22 @@
 .profile-down-arrow {
     display: block;
 }
+
 .profile-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.about-navbar{
+    position: fixed;
+        top: 0%;
+        width: 100%;
+        height: 100px;
+        display: flex;
+        justify-content: flex-end;
+        color: aliceblue;
+    
 }
 @media screen and (max-width:768px) {
     .profile-down-arrow{

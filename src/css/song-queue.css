@@ -182,7 +182,7 @@
 @media screen and (max-height:400px) {
     .main-content{
         top:110px;
-        width: 95%;
+        width: 90%;
     }
     .song-queue-item,
         .song-queue-item-all-songs {
