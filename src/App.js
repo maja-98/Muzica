@@ -7,7 +7,6 @@ import AllSongsList from './AllSongsList'
 import SignUp from './components/SignUp'
 import Login from './components/Login'
 import Error from './components/Error'
-import Favourites from './components/subcomponents/Favourites'
 import AvailbleSongsList from './components/subcomponents/AvailbleSongsList'
 export const PlayerContext = React.createContext()
 
@@ -315,28 +314,6 @@ function App() {
             path:'/all-songs/',
             element:<AvailbleSongsList/>
         },   
-        {
-            path:'/fav-songs/',
-            element:<PlayerContext.Provider value ={{
-                favourites,
-                constrains,
-                currentSong,
-                songQueue,
-                PlayBtn,
-                PauseBtn,
-                defaultSong,
-                audioRef,
-                handleRemoveQueue,
-                handleFavourites,
-                handleChangeSong,
-                handlePlay,
-                handleAddQueue,
-                playRandomSong,
-                handlePlayFromAllSongs,
-                handlePlayFromQueue,
-            }}><Favourites/>
-            </PlayerContext.Provider>
-        },    
         {
             path:'/signup/',
             element:<SignUp/>,

@@ -1,7 +1,31 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {  SkipBackwardFill, SkipForwardFill,SpeakerFill } from "react-bootstrap-icons";
 export default function Player({handleChangeSong,handlePlay,handleUpdateDuration,duration}) {
   const [volume,setVolume] = useState(50)
+  useEffect(()=>{
+    const handleKeyPress = (event) => {
+    const key = event.code
+    const volBar = document.querySelector('#volume-control')
+    const volPercent = document.querySelector('#vol-percent')
+    if (key==='ArrowUp' | key==='ArrowDown'){
+      event.preventDefault()
+      
+      if (volBar.style.display==='none'|volBar.style.display===''){
+      volBar.style.display = 'inline-block'
+      volPercent.style.display ='none'
+      }
+    }
+    if (key==='ArrowUp' ){
+      volBar.value  =  parseInt(volBar.value)+1
+    }
+    else if(key==='ArrowDown'){
+      volBar.value  =  parseInt(volBar.value)-1
+    }
+    }
+    document.addEventListener("keydown", (event) =>handleKeyPress(event))
+    return (() => document.removeEventListener("keydown",(event) => handleKeyPress(event)))
+  },[])
+
   const handleAudioBarToggle = () => {
     const volBar = document.querySelector('#volume-control')
     const volPercent = document.querySelector('#vol-percent')
@@ -32,6 +56,7 @@ export default function Player({handleChangeSong,handlePlay,handleUpdateDuration
       return '00:00'
     }
   }
+
   return (
     <div className='player-container'>
       <div className="controls-all">

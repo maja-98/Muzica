@@ -172,7 +172,7 @@
         height: 15px;
         padding: 3px;
         font-size: 9px;
-        margin-bottom: 0px;
+        margin-bottom: 10px;
     }
     .song-attributes > button{
         margin: 3px;
@@ -234,7 +234,7 @@
         height: 18px;
         padding: 4px;
         font-size: 11px;
-        margin-bottom: 0px;
+        margin-bottom: 15px;
     }
 
     .song-attributes>button {

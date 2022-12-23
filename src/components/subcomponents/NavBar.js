@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { MusicNote,HeartFill ,InfoCircleFill,CaretDown,CaretUpFill,HouseFill, CaretLeftFill, CaretRightFill} from 'react-bootstrap-icons'
+import { HeartFill ,InfoCircleFill,CaretDown,CaretUpFill,HouseFill, CaretLeftFill, CaretRightFill} from 'react-bootstrap-icons'
 // import { Link } from 'react-router-dom'
 
 
@@ -32,7 +32,6 @@ export default function NavBar({constrains,currentSong,queueDisplay,handlefavDis
       <div className='nav-menu'>
         {navBarDisplay && <div className='nav-links-container'>
           <button className='nav-links' title='About'><InfoCircleFill/></button> 
-           <button className='nav-links' title='All Songs'><MusicNote/></button> 
            <button className='nav-links' onClick={handlefavDisplay} title='Favourites'>{favDisplay===false ? <HeartFill/>:<HouseFill/>}</button> 
         </div>}
         <div className='profile-container'>
