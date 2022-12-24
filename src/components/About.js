@@ -13,8 +13,8 @@ export default function About() {
         <h5>Mobile Compatible</h5>
         <h5 className='developer'>App by: Muhammed Ali Jouhar A</h5>
         <div className='about-links'>
-          <a href='https://www.instagram.com/__maj_a__/' target ='_blank'><Instagram/></a>
-          <a href='https://github.com/maja-98' target='_blank'><Github/></a>
+          <a href='https://www.instagram.com/__maj_a__/'rel="noreferrer" target ='_blank'><Instagram/></a>
+          <a href='https://github.com/maja-98' rel="noreferrer" target='_blank'><Github/></a>
         </div>
         
       </div>
