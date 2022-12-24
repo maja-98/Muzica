@@ -17,6 +17,7 @@
     margin-left: 10px;
     opacity: 0.8;
     animation: fade-in 1s linear;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 .nav-menu{
     height: fit-content;

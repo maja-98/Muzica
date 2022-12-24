@@ -5,11 +5,13 @@ export default function About() {
     <div className='about'>
       <h1 className='about-title'>MUZICA</h1>
       <div className='about-container'>
-        <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-           dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex 
-           ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
-           nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.</h5>
+        <h5 className='version'>Version v1.0.0</h5>
+        <h5>User Friendly UI/UX</h5>
+        <h5>Favourites option</h5>
+        <h5>Custom queue </h5>
+        <h5>Search Option</h5>
+        <h5>Mobile Compatible</h5>
+        <h5 className='developer'>App by: Muhammed Ali Jouhar A</h5>
         <div className='about-links'>
           <a href='https://www.instagram.com/__maj_a__/'><Instagram/></a>
           <a href='https://github.com/maja-98'><Github/></a>

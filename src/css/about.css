@@ -6,17 +6,20 @@
     align-items: center;
     position: fixed;
     width: 90%;
+    top:150px;
+    left: 50px;;
 }
 .about-title{
     color: rgba(245, 250, 255, 0.7);
     font-size: 50px;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     animation: custom-effect-desktop 2s ;
 }
 .about-container{
     display: inherit;
     flex-direction: column;
     align-items: center;
+    margin: 30px;
+    
 }
 .about-container > h5{
     color: rgba(250, 235, 215, 0.674);
@@ -24,15 +27,25 @@
     font-weight: 500;
     text-align: justify;
     font-size: 20px;
-    margin: 30px;
+   
 }
 .about-links{
     display: flex;
+    margin: 30px;
 }
 .about-links > a{
     font-size: 30px;
     margin: 5px;
     color: rgb(11, 4, 4);
+}
+.developer{
+    font-family:inherit;
+    opacity: 0.6;
+    margin: 7px;
+}
+.version{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 10px;
 }
 @media screen and (max-width:768px) {
     .about{
@@ -40,16 +53,22 @@
         top: 80px;
         left: 50px;
     }
+    .about-container{
+        margin: 10px;
+    }
     .about-title {
         padding-top: 10px;
         font-size: 25px;
-        animation: custom-effect-mobile 2s;
+        animation: custom-effect-mobile 2s ;
     }
         .about-container>h5 {
             font-size: 12px;
             max-width: 300px;
-            margin: 10px;
+            margin: 5px;
         }
+    .about-links{
+        margin: 20px;
+    }
     .about-links>a {
         font-size: 20px;
     }
@@ -67,11 +86,13 @@
         font-size: 30px;
         animation: custom-effect-tablet 2s;
     }
-
+    .about-container{
+        margin: 10px;
+    }
     .about-container>h5 {
         font-size: 14px;
         max-width: 400px;
-        margin: 10px;
+        margin: 2px;
     }
 
     .about-links>a {
@@ -80,7 +101,7 @@
 }
 @keyframes custom-effect-desktop {
     0% {
-       transform: translate(-600px,-10px)scale(0.6)
+       transform: translate(-650px,-160px)scale(0.6)
     }
 
     100% {
@@ -105,6 +126,7 @@
 
     100% {
         transform: translateX(0px)scale(1);
+        
     }
 
 }
